@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "ed73e80f-9514-44f9-b8ac-def03aeb2dfe",
+		"name": "Bookstore API Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39398044"
+	},
+	"item": [
+		{
+			"name": "TextBookListing",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/BookStore/v1/Books",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"BookStore",
+						"v1",
+						"Books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UserCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"Suborna\",\r\n  \"password\": \"Suborna123@\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/Account/v1/User",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"Account",
+						"v1",
+						"User"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{URL}}/BookStore/v1/Books",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"d39beada-a649-40fa-ad1c-e6055577d1f8\",\r\n  \"collectionOfIsbns\": [\r\n    {\r\n      \"isbn\": \"9781449325862\"\r\n    },\r\n    {\r\n      \"isbn\": \"9781449331818\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/BookStore/v1/Books",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"BookStore",
+						"v1",
+						"Books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://bookstore.demoqa.com/Account/v1/GenerateToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json(); // Parse the response JSON\r",
+							"if (response.token) {\r",
+							"    pm.environment.set(\"auth_token\", response.token); // Save the token in environment\r",
+							"    console.log(\"Token successfully saved:\", response.token); // Log token to Postman Console\r",
+							"} else {\r",
+							"    console.log(\"Token generation failed.\");\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"Suborna2\",\r\n  \"password\": \"Suborna123@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://bookstore.demoqa.com/Account/v1/GenerateToken",
+					"protocol": "https",
+					"host": [
+						"bookstore",
+						"demoqa",
+						"com"
+					],
+					"path": [
+						"Account",
+						"v1",
+						"GenerateToken"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
